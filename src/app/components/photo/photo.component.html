@@ -1,0 +1,22 @@
+@if (photo) {
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb my-5 px-4">
+    <li class="breadcrumb-item"><a routerLink="/" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="/photos" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Photos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Photo - {{ photo.id }}</li>
+  </ol>
+</nav>
+
+<div class="container my-5 px-4">
+  <h1 class="title">{{ photo.title }}</h1>
+  <p class="card-text">Album ID: <a [routerLink]="['/albums', photo.albumId]" routerLinkActive="router-link-active"
+    class="link-primary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">{{ photo.albumId }}</a></p>
+  <div class="row">
+    <div class="col-12 w-50 mx-auto">
+      <div class="card">
+        <img class="card-img-top img-fluid" [src]="photo.url" [alt]="photo.title">
+      </div>
+    </div>
+  </div>
+</div>
+}

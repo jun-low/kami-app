@@ -1,0 +1,65 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb my-5 px-4">
+    <li class="breadcrumb-item"><a routerLink="/" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Photos</li>
+  </ol>
+</nav>
+
+<div class="container my-5 px-4">
+  <h1 class="mb-4">Photos</h1>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" (input)="onItemChange()" placeholder="Search photo" />
+        <button class="btn btn-secondary" (click)="onItemChange()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <select class="form-select" [(ngModel)]="sortField" (change)="onItemChange()">
+        <option selected value="">Sort by</option>
+        <option value="title">Title</option>
+        <option value="userId">User ID</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <select class="form-select" [(ngModel)]="sortDirection" (change)="onItemChange()">
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+    </div>
+    @if (isLoading) {
+      <div class="d-flex align-items-center justify-content-center mt-5">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    } @else {
+      @for (photo of filteredPhotos | slice: (currentPage-1) * pageSize : currentPage * pageSize; track photo.id) {
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
+          <div class="card">
+            <img class="card-img-top img-fluid rounded-top" [src]="photo.thumbnailUrl" [alt]="photo.title">
+            <div class="card-body">
+              <h5 class="card-title text-truncate">{{ photo.title }}</h5>
+              <a [routerLink]="['/photos', photo.id]" class="btn btn-primary">View</a>
+            </div>
+          </div>
+        </div>
+      }
+      <div class="row justify-content-center">
+        <div class="col-md-auto mt-3 mw-50">
+          <ngb-pagination
+            [(page)]="currentPage"
+            [pageSize]="pageSize"
+            [maxSize]="8"
+            [collectionSize]="photos.length"
+            (pageChange)="onPageChange($event)"
+          ></ngb-pagination>
+        </div>
+      </div>
+    }
+  </div>
+</div>
