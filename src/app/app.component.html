@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row vh-100">
+    <nav class="col-md-3 col-lg-2 d-md-block bg-light text-dark sidebar">
+      <div class="sidebar-sticky">
+        <div>
+          <img loading="lazy" width="393" height="105" src="https://kamiworkforce.com/wp-content/uploads/kami-color.svg" class="img-fluid p-3 d-none d-md-block d-lg-block" alt="logo">
+          <h3 class="px-3 font-weight-bold text-primary-emphasis">My App</h3>
+        </div>
+        <ul class="nav flex-md-column">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/posts" routerLinkActive="active" ariaCurrentWhenActive="page">Posts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/albums" routerLinkActive="active" ariaCurrentWhenActive="page">Albums</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/photos" routerLinkActive="active" ariaCurrentWhenActive="page">Photos</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-0">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
+
