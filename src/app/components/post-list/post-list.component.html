@@ -33,44 +33,44 @@
     </div>
   </div>
   @if (isLoading) {
-    <div class="d-flex align-items-center justify-content-center mt-5">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+  <div class="d-flex align-items-center justify-content-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
+  </div>
   } @else {
-    <div class="row">
-      <div class="col-md-12">
-        <table class="table table-striped">
-          <thead>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (post of filteredPosts | slice: (currentPage-1) * pageSize : currentPage * pageSize; track post.id) {
             <tr>
-              <th>ID</th>
-              <th>User ID</th>
-              <th>Title</th>
+              <td>{{ post.id }}</td>
+              <td>{{ post.userId }}</td>
+              <td><a [routerLink]="['/posts', post.id]" routerLinkActive="router-link-active" class="link-primary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">{{ post.title }}</a></td>
             </tr>
-          </thead>
-          <tbody>
-            @for (post of filteredPosts | slice: (currentPage-1) * pageSize : currentPage * pageSize; track post.id) {
-              <tr>
-                <td>{{ post.id }}</td>
-                <td>{{ post.userId }}</td>
-                <td><a [routerLink]="['/posts', post.id]" routerLinkActive="router-link-active" class="link-primary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">{{ post.title }}</a></td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
+          }
+        </tbody>
+      </table>
     </div>
-    <div class="row justify-content-md-center">
-      <div class="col-md-auto">
-        <ngb-pagination
-          [(page)]="currentPage"
-          [pageSize]="pageSize"
-          [maxSize]="8"
-          [collectionSize]="posts.length"
-          (pageChange)="onPageChange($event)"
-        ></ngb-pagination>
-      </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto">
+      <ngb-pagination
+        [(page)]="currentPage"
+        [pageSize]="pageSize"
+        [maxSize]="8"
+        [collectionSize]="posts.length"
+        (pageChange)="onPageChange($event)"
+      ></ngb-pagination>
     </div>
+  </div>
   }
 </div>

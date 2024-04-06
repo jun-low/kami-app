@@ -32,34 +32,34 @@
       </select>
     </div>
     @if (isLoading) {
-      <div class="d-flex align-items-center justify-content-center mt-5">
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
+    <div class="d-flex align-items-center justify-content-center mt-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
+    </div>
     } @else {
-      @for (photo of filteredPhotos | slice: (currentPage-1) * pageSize : currentPage * pageSize; track photo.id) {
-        <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
-          <div class="card">
-            <img class="card-img-top img-fluid rounded-top" [src]="photo.thumbnailUrl" [alt]="photo.title">
-            <div class="card-body">
-              <h5 class="card-title text-truncate">{{ photo.title }}</h5>
-              <a [routerLink]="['/photos', photo.id]" class="btn btn-primary">View</a>
-            </div>
-          </div>
-        </div>
-      }
-      <div class="row justify-content-center">
-        <div class="col-md-auto mt-3 mw-50">
-          <ngb-pagination
-            [(page)]="currentPage"
-            [pageSize]="pageSize"
-            [maxSize]="8"
-            [collectionSize]="photos.length"
-            (pageChange)="onPageChange($event)"
-          ></ngb-pagination>
+    @for (photo of filteredPhotos | slice: (currentPage-1) * pageSize : currentPage * pageSize; track photo.id) {
+    <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
+      <div class="card">
+        <img class="card-img-top img-fluid rounded-top" [src]="photo.thumbnailUrl" [alt]="photo.title">
+        <div class="card-body">
+          <h5 class="card-title text-truncate">{{ photo.title }}</h5>
+          <a [routerLink]="['/photos', photo.id]" class="btn btn-primary">View</a>
         </div>
       </div>
+    </div>
+    }
+    <div class="row justify-content-center">
+      <div class="col-md-auto mt-3 mw-50">
+        <ngb-pagination
+          [(page)]="currentPage"
+          [pageSize]="pageSize"
+          [maxSize]="8"
+          [collectionSize]="photos.length"
+          (pageChange)="onPageChange($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
     }
   </div>
 </div>
