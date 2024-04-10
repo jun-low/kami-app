@@ -1,6 +1,28 @@
 # KamiFrontendApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
+This project is a Dashboard app for viewing Posts, Users, Albums, and Photos, built with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
+
+The Dashboard app provides the following features:
+
+- Posts: View a list of posts, including the post title, body, and the user who created the post.
+- Albums: View a list of albums, including the album title and the user who created the album.
+- Photos: View a list of photos, including the photo title, URL, and the album the photo belongs to.
+- Users: View the user profile including name, username, email, and website.
+
+You can navigate between these sections except users using the menu on the left side of the dashboard.
+
+## Getting Started
+Firstly, clone this repository.
+
+```
+git clone git@github.com:jun-low/kami-frontend-app.git
+```
+
+Navigate to the directory and install the dependencies.
+```
+cd KamiFrontendApp
+npm install
+```
 
 ## Development server
 
